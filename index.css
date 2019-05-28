@@ -1,0 +1,206 @@
+*{
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+  color: #343a40;
+}
+
+ul, 
+li {
+  list-style-type: none;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+}
+
+.text-orange {
+  color: #D2691E;
+}
+
+.text-purple {
+  color: purple;
+}
+
+/*Cover Photo*/
+#cover .cover-photo {
+  background-image: url(img/Taiwan.jpg);
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  height: 500px;
+}
+
+#cover .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3);
+}
+
+#cover .cover-content {
+  position: absolute;
+  z-index: 999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  font-size: 16px;
+}
+
+#cover .cover-title{
+  font-weight: 700;
+  text-shadow: 1.5px 1.5px #484848;
+  font-size: 3.5em;
+}
+
+#cover button{
+  margin-top: 1.2em;
+  padding: .3em .8em;
+  letter-spacing: .2em;
+}
+
+#cover .navigation-container {
+  position: relative;
+  display: none;
+}
+
+#cover .navigation-container.navigation-show {
+  display: block;
+}
+
+#cover .navigation-items {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  background: white;
+  display: none;
+  height: 180px;
+  overflow: scroll;
+}
+
+#cover .navigation-items a {
+  color: #6c757d;
+  font-size: .9em;
+  padding: .4em 2em;
+}
+
+#cover .navigation-items a:hover {
+  background: #6c757d;
+  color: white;
+}
+
+/* City Weather Profile Panel */
+.city figure {
+  overflow: hidden;
+}
+
+.city img:hover {
+  transition: all .2s linear;
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.city .fa-lightbulb {
+  cursor: pointer;
+}
+
+/* Modal for City Profile Detail */
+#city-profile-detail h5 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+#city-profile-detail .modal-body img {
+  width: 100%;
+}
+
+#city-profile-detail .wx-forecast div {
+  flex-basis: 50%;
+  margin-bottom: 15px;
+}
+
+#city-profile-detail .wx-forecast p {
+  font-size: 12px;
+}
+
+/*Footer*/
+footer {
+  padding: 10px;
+}
+
+footer p {
+  font-size: 13px;
+}
+
+
+@media screen and (min-width: 576px){
+  /*Cover Photo*/
+  #cover .cover-content {
+    font-size: 20px;
+  }
+
+  #cover .navigation-items a {
+    font-size: .75em;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  /*Cover Photo*/
+  #cover .cover-content {
+    font-size: 24px;
+  }
+
+  #cover .navigation-items a {
+    font-size: .65em;
+  }
+}
+
+@media screen and (min-width:992px) {
+  /*Cover Photo*/
+  #cover .cover-content {
+    font-size: 26px;
+  }
+
+  /* Modal for City Profile Detail */
+  #city-profile-detail h5 {
+    letter-spacing: 3px;
+  }
+
+  #city-profile-detail .wx-forecast div {
+    flex-basis: 25%;
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  /*Cover Photo*/
+  #cover .cover-content {
+    font-size: 28px;
+  }
+
+}

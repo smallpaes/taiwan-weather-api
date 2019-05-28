@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+    crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:400,500,700,900&display=swap&subset=chinese-traditional"
+    rel="stylesheet">
+  <link rel="stylesheet" type="text/css" media="screen" href="local.css" />
+
+</head>
+
+<body>
+
+  <!--Navbar-->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a href="#" class="navbar-brand">Taiwan Weather</a>
+    <button class="navbar-toggler" type='button' data-toggle='collapse' data-target='#navbarContent' aria-controls="navbarContent"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link">全台天氣概況</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="local.html" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            各地天氣預測
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <!--Display Drop Down Menu-->
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!--Cover Photo-->
+  <section id='cover' class='position-relative'>
+    <div class="cover-photo"></div>
+    <div class="overlay"></div>
+    <h1 class="cover-title text-white display-3 text-center"></h1>
+  </section>
+
+  <!--Current Weather Display-->
+  <div class="container text-center text-secondary">
+    <h1 class='my-5 text-info'>現在天氣</h1>
+    <div class="row border border-muted rounded py-4">
+      <div class="col-4">
+        <h6>天氣現象</h6>
+        <h1 class='display-2' data-current-wx></h1>
+      </div>
+      <div class="col-4">
+        <h6>平均溫度</h6>
+        <h1 class='display-2'><span data-current-temp>0</span>&#176;C</h1>
+      </div>
+      <div class="col-4">
+        <h6>降雨機率</h6>
+        <h1 class='display-2'><span data-current-pop>0</span>%</h1>
+      </div>
+    </div>
+  </div>
+
+  <!--Weather Forecast Display-->
+  <div class="container text-center text-secondary">
+    <h1 class='my-5 text-info'>天氣預測</h1>
+    <div class="forecast-display mb-1">
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <!--Display Forecast Slides-->
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="text-info" aria-hidden="true"><i class="fas fa-chevron-left"></i></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="text-info" aria-hidden="true"><i class="fas fa-chevron-right"></i></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!--Chance of Raining Forecast Display-->
+  <div class="container">
+    <h1 class='my-5 text-info text-center'>下雨機率預測</h1>
+    <canvas id="rainingChart"></canvas>
+  </div>
+
+  <!--Temperature Forecast Display-->
+  <div class="container">
+    <h1 class='my-5 text-info text-center'>一週溫度預測</h1>
+    <canvas id="temperatureChart"></canvas>
+  </div>
+
+  <!-- Modal for UVI Index Sheet-->
+  <div class="modal fade" id="uvi-table" tabindex="-1" role="dialog" aria-labelledby="uviTableLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-dark font-weight-bolder" id="uviTableLabel">紫外線指數分級說明</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <h4 class='text-success'><i class="fas fa-lightbulb pr-2"></i>低量級</h4>
+            </li>
+            <li class="list-group-item">
+              <h4 class='text-warning'><i class="fas fa-lightbulb pr-2"></i>中量級</h4>
+            </li>
+            <li class="list-group-item">
+              <h4 class='text-orange'><i class="fas fa-lightbulb pr-2"></i>高量級：30 分鐘內曬傷</h4>
+              <p>建議措施：帽子/陽傘+防曬液+太陽眼鏡+儘量待在陰涼處</p>
+            </li>
+            <li class="list-group-item">
+              <h4 class='text-danger'><i class="fas fa-lightbulb pr-2"></i>過量級：20 分鐘內曬傷</h4>
+              <p>建議措施：帽子/陽傘+防曬液+太陽眼鏡+陰涼處+長袖衣物+上午十時至下午二時最好不外出</p>
+            </li>
+            <li class="list-group-item">
+              <h4 class='text-purple'><i class="fas fa-lightbulb pr-2"></i>危險級：10 分鐘內曬傷</h4>
+              <p>建議措施：帽子/陽傘+防曬液+太陽眼鏡+陰涼處+長袖衣物+上午十時至下午二時最好不外出</p>
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉視窗</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Footer to show the source of the data-->
+  <footer class='bg-dark m-0 fixed-bottom'>
+    <p class="text-light text-center">天氣預測資料來自交通部中央氣象局:
+      <a href="https://opendata.cwb.gov.tw/index">氣象資料開放平臺</a>
+    </p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="local.js"></script>
+</body>
+
+</html>
