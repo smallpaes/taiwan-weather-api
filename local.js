@@ -7,7 +7,7 @@
   let rawData = []
   let processedData = {}
   const BASE_URL = 'https://opendata.cwb.gov.tw/api/v1/rest/datastore/'
-  const AUTHORIZE_CODE = 'Authorization=CWB-78AA3E18-AAFB-40E9-A97F-67E2E1CC1C91'
+  const AUTHORIZE_CODE = '<YOUR_API_KEY>'
   const FORECAST = {
     dataid: 'F-D0047-091',
     format: 'JSON',
