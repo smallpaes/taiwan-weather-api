@@ -1,4 +1,4 @@
-# Expense Tracker 💰
+# Weather in Taiwan 🏖
 A web application for you to readily find weather condition and forecast in Taiwan ☀️
 
 
